@@ -1,0 +1,61 @@
+<<<SPEC>>>
+
+find -> marco
+save -> sage
+undo -> dizzle
+redo -> rizzle
+cut -> snatch
+
+dredge -> swick
+maxiwin -> (windy | Wendy) Max
+
+kick -> (chiff | Jeff)
+
+bird -> fame
+firch -> fish
+
+brick -> shrim
+frick -> shrish
+blitch -> scram
+flitch -> scrish
+
+next cursor -> grab it
+skip next cursor -> skip it
+switch line up -> cue jeep
+switch line down -> cue doom
+
+<<<NOT_SPECS>>>
+
+sauce -> Jeep
+dunce -> doom
+lease -> crimp
+
+big -> sky
+
+clear -> junk
+deli -> spunk
+
+
+delta -> dell
+echo -> etch
+foxy -> fomp
+goof -> goof
+hotel -> hark
+India -> ice
+julia -> jinx
+kilo -> koop
+Lima -> lug
+Mike -> mowsh | mouse
+Novakeen -> nerb
+oscar -> orks
+prime -> pooch
+Quebec -> quash
+Romeo -> rosh
+Sierra -> sook | souk
+tango -> teek
+uniform -> unks
+victor -> verge
+whiskey -> womp
+x-ray -> trex
+yankee -> yang
+Zulu -> zerb | Zerby
