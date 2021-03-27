@@ -8,15 +8,12 @@ Command-module for git
 
 """
 # ---------------------------------------------------------------------------
+from castervoice.lib.const import CCRType
+from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
+from castervoice.lib.merge.mergerule import MergeRule
+from castervoice.lib.merge.state.short import R
 
-from dragonfly import (Grammar, AppContext, Mimic, Dictation, Key, Text)
-
-from caster.lib import control
-from caster.lib import settings
-from caster.lib.dfplus.additions import IntegerRefST
-from caster.lib.dfplus.merge import gfilter
-from caster.lib.dfplus.merge.mergerule import MergeRule
-from caster.lib.dfplus.state.short import R
+from dragonfly import (Grammar, AppContext, Mimic, Dictation, Key, Text, ShortIntegerRef)
 
 
 class CustomGitBashRule(MergeRule):
@@ -169,7 +166,7 @@ class CustomGitBashRule(MergeRule):
             R(Key("c-tab"), rdescript="switch tab"),
     }
     extras = [
-        IntegerRefST("n", 1, 10000),
+        ShortIntegerRef("n", 1, 10000),
         Dictation("text"),
     ]
     defaults = {"n": 0, "text": ""}
@@ -184,11 +181,9 @@ context4 = AppContext(executable="\\ConEmu64.exe")
 
 grammar = Grammar("MINGW32", context=(context | context2 | context3 | context4))
 
-if settings.SETTINGS["apps"]["gitbash"]:
-    if settings.SETTINGS["miscellaneous"]["rdp_mode"]:
-        control.nexus().merger.add_global_rule(CustomGitBashRule())
-    else:
-        rule = CustomGitBashRule(name="custom git bash")
-        gfilter.run_on(rule)
-        grammar.add_rule(rule)
-        grammar.load()
+def get_rule():
+    details = RuleDetails(executable="code",
+                          title="Visual Studio Code",
+                          ccrtype=CCRType.APP)
+    return CustomGitBashRule, details
+
