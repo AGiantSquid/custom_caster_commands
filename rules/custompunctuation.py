@@ -71,7 +71,7 @@ class CustomPunctuation(MergeRule):
         'shable [<npunc>]': Key("c-lbracket"),
         "swipe": Text(", "),
     }
-    pronuniation= "custom punctuation"
+    pronunciation = "custom punctuation"
     extras = [
         ShortIntegerRef("npunc", 0, 10),
     ]
