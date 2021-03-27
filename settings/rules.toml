@@ -1,5 +1,5 @@
 _internal = ["GrammarActivatorRule", "HooksActivationRule", "TransformersActivationRule", "ManualGrammarReloadRule"]
-_enabled_ordered = ["Alphabet", "Navigation", "NavigationNon", "Numbers", "Punctuation", "Keyboard", "CasterRule", "CasterMicRule", "HardwareRule", "MouseAlternativesRule", "WindowManagementRule", "DouglasGridRule", "RainbowGridRule", "SudokuGridRule", "HMCRule", "HMCConfirmRule", "HMCDirectoryRule", "HMCHistoryRule", "HMCLaunchRule", "HMCSettingsRule", "HistoryRule", "ChainAlias", "Alias", "BringRule", "Again", "LegionGridRule", "IERule", "DragonRule", "GrammarActivatorRule", "HooksActivationRule", "CustomVocabulary", "TaskBar", "CustomStuff", "TransformersActivationRule", "Python", "PythonNon", "ChromeRule", "VSCodeCcrRule", "VSCodeNonCcrRule", "CustomPunctuation", "CustomVSCode"]
+_enabled_ordered = ["Alphabet", "Navigation", "NavigationNon", "Numbers", "Punctuation", "Keyboard", "CasterRule", "CasterMicRule", "HardwareRule", "MouseAlternativesRule", "WindowManagementRule", "DouglasGridRule", "RainbowGridRule", "SudokuGridRule", "HMCRule", "HMCConfirmRule", "HMCDirectoryRule", "HMCHistoryRule", "HMCLaunchRule", "HMCSettingsRule", "HistoryRule", "ChainAlias", "Alias", "BringRule", "Again", "LegionGridRule", "IERule", "DragonRule", "GrammarActivatorRule", "HooksActivationRule", "CustomVocabulary", "TaskBar", "CustomStuff", "TransformersActivationRule", "Python", "PythonNon", "ChromeRule", "VSCodeCcrRule", "VSCodeNonCcrRule", "CustomPunctuation", "CustomVSCode", "CustomGitBashRule"]
 
 [whitelisted]
 VSCodeCcrRule = true
@@ -77,6 +77,7 @@ GitHubDeskRule = true
 Markdown = true
 KDiff3Rule = true
 Numbers = true
+ChromeRule = true
 HMCSettingsRule = true
 BringRule = true
 fmanRule = true
@@ -98,7 +99,7 @@ Rlang = true
 Alias = true
 FirefoxRule = true
 CasterMicRule = true
-ChromeRule = true
+CustomGitBashRule = true
 SyncDirsRule = true
 GitterRule = true
 HMCHistoryRule = true

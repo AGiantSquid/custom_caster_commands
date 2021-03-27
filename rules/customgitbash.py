@@ -13,11 +13,11 @@ from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
 from castervoice.lib.merge.mergerule import MergeRule
 from castervoice.lib.merge.state.short import R
 
-from dragonfly import (Grammar, AppContext, Mimic, Dictation, Key, Text, ShortIntegerRef)
+from dragonfly import (Mimic, Dictation, Key, Text, ShortIntegerRef)
 
 
 class CustomGitBashRule(MergeRule):
-    pronunciation = "custom git bash"
+    pronunciation = "custom get bash"
 
     mapping = {
         "initialize repository":
@@ -174,16 +174,19 @@ class CustomGitBashRule(MergeRule):
 
 # ---------------------------------------------------------------------------
 
-context = AppContext(executable="\\sh.exe")
-context2 = AppContext(executable="\\bash.exe")
-context3 = AppContext(executable="\\mintty.exe")
-context4 = AppContext(executable="\\ConEmu64.exe")
+context = "debian"
+context2 = "bash"
+context3 = "mintty"
+context4 = "ConEmu64"
+context4 = "WindowsTerminal"
+context5 = "wsl"
 
-grammar = Grammar("MINGW32", context=(context | context2 | context3 | context4))
+
+executables = (context, context2, context3, context4, context5)
+
 
 def get_rule():
-    details = RuleDetails(executable="code",
-                          title="Visual Studio Code",
+    details = RuleDetails(executable=executables,
+                          title="custom get bash",
                           ccrtype=CCRType.APP)
     return CustomGitBashRule, details
-
