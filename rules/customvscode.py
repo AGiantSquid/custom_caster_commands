@@ -3,7 +3,7 @@ from castervoice.lib.const import CCRType
 from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
 from castervoice.lib.merge.state.short import R
 from castervoice.lib.merge.mergerule import MergeRule
-from dragonfly import Pause, Repeat, Dictation, ShortIntegerRef
+from dragonfly import Pause, Dictation, ShortIntegerRef
 from dragonfly.actions.action_text import Text
 
 

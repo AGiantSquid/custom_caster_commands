@@ -1,8 +1,6 @@
-from dragonfly import (MappingRule, BringApp, Key, Function, Grammar, Playback, 
-                       IntegerRef, Dictation, Choice, WaitWindow)
 from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
-from castervoice.lib.actions import Key, Text, Mouse
-from dragonfly import Text
+from castervoice.lib.actions import Text
+from dragonfly import MappingRule
 
 
 class CustomVocabulary(MappingRule):
@@ -16,6 +14,8 @@ class CustomVocabulary(MappingRule):
             Text("ashley.e.shultz@gmail.com"),
         "e-mail":
             Text(" email "),
+        "topple":
+            Text("tuple")
     }
     extras = []
     defaults = {}

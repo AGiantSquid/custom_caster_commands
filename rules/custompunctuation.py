@@ -2,11 +2,9 @@
 from castervoice.lib.const import CCRType
 from castervoice.lib.merge.mergerule import MergeRule
 from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
-from castervoice.lib.actions import Key, Text, Mouse
+from castervoice.lib.actions import Key, Text
 
 from dragonfly import ShortIntegerRef
-from dragonfly import (MappingRule, BringApp, Key, Function, Grammar, Playback, 
-                       IntegerRef, Dictation, Choice, WaitWindow)
 
 
 class CustomPunctuation(MergeRule):
