@@ -1,0 +1,60 @@
+# general
+shultz
+
+
+# caster
+caster
+chiff
+chuck
+selrang
+
+
+# python
+doctest
+pip
+pipenv
+pytest
+python
+venv
+
+
+
+# programming
+bash
+debug
+debugging
+docker
+git
+github
+gitter
+lint
+linter
+linting
+linux
+ping
+protobuf
+pull request
+uncomment
+uuid
+yaml
+
+
+# aws
+boto3
+dynamodb
+s3
+
+
+# canoo
+canoo
+VICM
+CXM
+
+
+
+# delete
+hyphen -
+Schultz
+e-mail
+castor
+Lennix
