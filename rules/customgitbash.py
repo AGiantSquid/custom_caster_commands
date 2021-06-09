@@ -8,15 +8,19 @@ Command-module for git
 
 """
 # ---------------------------------------------------------------------------
-from castervoice.lib.const import CCRType
 from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
-from castervoice.lib.merge.mergerule import MergeRule
 from castervoice.lib.merge.state.short import R
 
-from dragonfly import (Mimic, Dictation, Key, Text, ShortIntegerRef)
+from dragonfly import (Mimic, Function, Dictation, Text, ShortIntegerRef, MappingRule)
+from castervoice.lib.actions import Key
 
 
-class CustomGitBashRule(MergeRule):
+def _apply(n):
+    if n != 0:
+        Text("stash@{" + str(int(n)) + "}").execute()
+
+
+class CustomGitBashRule(MappingRule):
     pronunciation = "custom get bash"
 
     mapping = {
@@ -106,7 +110,7 @@ class CustomGitBashRule(MergeRule):
             R(Text("exit") + Key("enter"), rdescript="GIT: Exit"),
         "stash":
             R(Text("git stash "), rdescript="GIT: Stash"),
-        # "stash apply [<n>]":            R(Text("git stash apply")+Function(_apply), rdescript="GIT: Stash Apply"),
+        "stash apply [<n>]":            R(Text("git stash apply ")+Function(_apply), rdescript="GIT: Stash Apply"),
         "stash list":
             R(Text("git stash list") + Key("enter"), rdescript="GIT: Stash List"),
         "stash branch":
@@ -150,8 +154,8 @@ class CustomGitBashRule(MergeRule):
               rdescript="GIT: Navigate To Caster Directory"),
         "checkout develop":
             R(Text("git checkout develop") + Key("enter"), rdescript="GIT: Check Out"),
-        "Mungo":
-            R(Text("mongo "), rdescript="GIT: Check Out"),
+        # "Mungo":
+        #     R(Text("mongo "), rdescript="GIT: Check Out"),
         "Clear":
             R(Text("clear") + Key("enter"), rdescript="GIT: Check Out"),
         "Cat":
@@ -164,6 +168,11 @@ class CustomGitBashRule(MergeRule):
             R(Text("apt-get install "), rdescript="GIT: Check Out"),
         "next tab":
             R(Key("c-tab"), rdescript="switch tab"),
+        "pytest":
+            R(Text("pytest -s -vv"), rdescript="run pytest"),
+
+        "activate environment":
+            R(Text("source .venv/bin/activate") + Key("enter"), rdescript="activate virtual environment"),
     }
     extras = [
         ShortIntegerRef("n", 1, 10000),
@@ -174,19 +183,23 @@ class CustomGitBashRule(MergeRule):
 
 # ---------------------------------------------------------------------------
 
-context = "debian"
-context2 = "bash"
-context3 = "mintty"
-context4 = "ConEmu64"
-context4 = "WindowsTerminal"
-context5 = "wsl"
 
-
-executables = (context, context2, context3, context4, context5)
+_executables = [
+    "debian",
+    "bash",
+    "mintty",
+    "ConEmu64",
+    "WindowsTerminal",
+    "\\sh.exe",
+    "\\bash.exe",
+    "\\cmd.exe",
+    "\\mintty.exe",
+    "\\powershell.exe",
+]
 
 
 def get_rule():
-    details = RuleDetails(executable=executables,
-                          title="custom get bash",
-                          ccrtype=CCRType.APP)
+    details = RuleDetails(executable=_executables,
+                          name="custom get bash",
+    )
     return CustomGitBashRule, details

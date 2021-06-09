@@ -37,7 +37,7 @@ deli -> spunk
 
 
 delta -> dell
-echo -> etch
+echo -> elk
 foxy -> fomp
 goof -> goof
 hotel -> hark
