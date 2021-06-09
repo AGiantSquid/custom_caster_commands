@@ -56,7 +56,7 @@ class CustomGitBashRule(MappingRule):
         "checkout":
             R(Text("git checkout "), rdescript="GIT: Check Out"),
         "check out new branch":
-            R(Text("git checkout -b "), rdescript="GIT: Check Out New Branch"),
+            R(Text("git checkout -b feature/SWOPS-"), rdescript="GIT: Check Out New Branch"),
         "difference":
             R(Text("git diff") + Key('enter'), rdescript="GIT: Diff"),
         "branch":
@@ -110,7 +110,8 @@ class CustomGitBashRule(MappingRule):
             R(Text("exit") + Key("enter"), rdescript="GIT: Exit"),
         "stash":
             R(Text("git stash "), rdescript="GIT: Stash"),
-        "stash apply [<n>]":            R(Text("git stash apply ")+Function(_apply), rdescript="GIT: Stash Apply"),
+        "stash apply [<n>]":
+            R(Text("git stash apply")+Function(_apply), rdescript="GIT: Stash Apply"),
         "stash list":
             R(Text("git stash list") + Key("enter"), rdescript="GIT: Stash List"),
         "stash branch":
