@@ -3,7 +3,7 @@ from castervoice.lib.merge.mergerule import MergeRule
 from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
 from castervoice.lib.merge.state.short import R, L, S
 
-  
+
 from dragonfly import Function, Playback, Mimic, WaitWindow, Repeat, Pause
 from castervoice.lib import textformat
 
@@ -18,7 +18,7 @@ from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
 from castervoice.lib.actions import Key, Text, Mouse
 
 from dragonfly import ShortIntegerRef
-from dragonfly import (MappingRule, BringApp, Key, Function, Grammar, Playback, 
+from dragonfly import (MappingRule, BringApp, Key, Function, Grammar, Playback,
                        IntegerRef, Dictation, Choice, WaitWindow)
 
 
@@ -88,7 +88,7 @@ class CustomStuff(MergeRule):
             R(Key("c-backspace"), rspec="clear", rdescript="Backspace")*
             Repeat(extra="nnavi50"),
         'duke':
-            R(Function(navigation.left_click)*Repeat(2)),        
+            R(Function(navigation.left_click)*Repeat(2)),
         "cram <textnv>":
             R(Function(format_text_wrapper, cap=3, space=1), rdescript="camelCase"),
         "smash <textnv>":
@@ -98,9 +98,9 @@ class CustomStuff(MergeRule):
             R(Function(format_text_wrapper, cap=5, space=0),
               rdescript="lowercase with spaces"),
         "scrodge [<nnavi50>]":
-            R(Function(wheel_scroll_down), rdescript="Wheel Scroll"),
+            R(Function(wheel_scroll_down), rdescript="Wheel Scroll")*Repeat(extra="nnavi50"),
         "scroop [<nnavi50>]":
-            R(Function(wheel_scroll_up), rdescript="Wheel Scroll"),
+            R(Function(wheel_scroll_up), rdescript="Wheel Scroll")*Repeat(extra="nnavi50"),
         'snore':
             R(Playback([(["go", "to", "sleep"], 0.0)])),
 
