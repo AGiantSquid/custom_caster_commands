@@ -20,3 +20,7 @@ For for further updates, the entire directory can be copied and wholesale with t
             R(Function(lambda n: Again._create_asynchronous(n)), show=False),  # pylint: disable=E0602
     }
 ```
+
+# `punctuation_rules`
+
+This entire directory is copied because the punctuation cannot be updated with words.txt because it is created with a function.

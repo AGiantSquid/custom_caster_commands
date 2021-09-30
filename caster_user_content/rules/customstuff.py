@@ -48,7 +48,7 @@ class CustomStuff(MergeRule):
             R(Key("c-n"), rdescript="Custom Navigation: Open New File"),
         "toggle tab":
             R(Key("c-tab"), rdescript="Next Tab"),
-        "Ali":
+        "Ali | Ollie | Holly":
             R(Key("c-a"), rdescript="Select All"),
         "back tab [<n>]":
             R(Key("s-tab"), rdescript="Previous Tab")*Repeat(extra="n"),
@@ -63,7 +63,7 @@ class CustomStuff(MergeRule):
         "workace lease":
             R(Key("cw-left"), rdescript="Workspace Left"),
         "workace ross":
-            R(Key("cw-right"), rdescript="Monitor Right"),
+            R(Key("cw-right"), rdescript="Workspace Right"),
         "peach":
             R(Key("c-t"), rdescript="Open New Tab"),
         "totch":
@@ -87,6 +87,8 @@ class CustomStuff(MergeRule):
         "trough [<nnavi50>]":
             R(Key("c-backspace"), rspec="clear", rdescript="Backspace")*
             Repeat(extra="nnavi50"),
+        "(chiff | Jeff) [<nnavi3>]":
+            R(Function(navigation.left_click))*Repeat(extra="nnavi3"),
         'duke':
             R(Function(navigation.left_click)*Repeat(2)),
         "cram <textnv>":

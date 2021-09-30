@@ -20,7 +20,7 @@ class CustomVSCode(MergeRule):
             R(Key("s-enter"), rdescript="VS Code: Ctrl + b"),
         "[go to] group [<n2>]":
             R(Key("c-%(n2)s"), rdescript="VS Code: Go to Group #"),
-        "spring <n>":
+        "(spring | Spring ) <n>":
             R(Key("c-g") + Pause("10") + Text("%(n)s") + Key("enter"),
               rdescript="VS Code: Go to Line #"),
         "crew [<text>]":

@@ -9,7 +9,7 @@ cut -> snatch
 dredge -> swick
 maxiwin -> (windy | Wendy) Max
 
-kick -> (chiff | Jeff)
+# kick -> (chiff | Jeff)
 
 bird -> fame
 firch -> fish

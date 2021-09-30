@@ -20,7 +20,7 @@ class Again(MappingRule):
     @staticmethod
     def _repeat(utterance):
         Playback([(utterance, 0.0)]).execute()
-        return False 
+        return False
 
     @staticmethod
     def _create_asynchronous(n):
@@ -28,8 +28,8 @@ class Again(MappingRule):
         if len(_history) == 0:
             return
 
-        # ContextStack adds the word to history before executing it for WSR 
-        if get_current_engine().name in ["sapi5shared", "sapi5", "sapi5inproc"]:  
+        # ContextStack adds the word to history before executing it for WSR
+        if get_current_engine().name in ["sapi5shared", "sapi5", "sapi5inproc"]:
             if len(_history) == 1: return
 
         # Calculatees last utterance from recognition history and creates list of str for Dragonfly Playback
@@ -40,7 +40,7 @@ class Again(MappingRule):
         AsynchronousAction(
             forward,
             rdescript="Repeat Last Action",
-            time_in_seconds=0.2,
+            time_in_seconds=0.05,
             repetitions=int(n),
             blocking=False).execute()
 
