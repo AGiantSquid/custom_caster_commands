@@ -11,6 +11,7 @@ selrang
 
 # python
 doctest
+import
 pip
 pipenv
 pytest
@@ -24,9 +25,11 @@ bash
 debug
 debugging
 docker
+enum
 git
 github
 gitter
+golang
 lint
 linter
 linting
@@ -37,6 +40,12 @@ pull request
 uncomment
 uuid
 yaml
+front end
+backend
+end-to-end
+e2e
+MQTT
+IoT
 
 
 # aws
