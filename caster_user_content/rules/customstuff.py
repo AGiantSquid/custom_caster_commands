@@ -94,8 +94,6 @@ class CustomStuff(MergeRule):
 
         # The following commands of been enabled via words.txt
         # If Caster gets rid of transformers, reenable these words
-        # "(chiff | Jeff) [<nnavi3>]":
-        #     R(Function(navigation.left_click))*Repeat(extra="nnavi3"),
         # "marco":
         #     R(Key("c-f"), rdescript="Find"),
         # "dizzle [<n>]":
@@ -123,16 +121,6 @@ class CustomStuff(MergeRule):
         #     R(Key("cs-left"), rspec="scram", rdescript="Select a word to the left")*
         #     Repeat(extra="nnavi50"),
 
-        # Deprecated
-        # "tridal <textnv>":
-        #     R(Function(format_text_wrapper, cap=2, space=0), rdescript="Title Case"),
-        # "Champ <textnv>":
-        #     R(Function(format_text_wrapper, cap=4, space=0),
-        #       rdescript="Capitalize first word"),
-        # "Lefty":
-        #     R(Key("home"), rdescript="Custom Navigation: Home Key"),
-        # "Ricky":
-        #     R(Key("end"), rdescript="Custom Navigation: End Key"),
     }
     extras = [
         ShortIntegerRef("nnavi3", 1, 4),
