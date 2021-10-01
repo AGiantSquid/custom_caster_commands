@@ -1,13 +1,6 @@
-#
-# This file is a command-module for Dragonfly.
-# (c) Copyright 2008 by Christo Butcher
-# Licensed under the LGPL, see <http://www.gnu.org/licenses/>
-#
 """
 Command-module for git
-
 """
-# ---------------------------------------------------------------------------
 from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
 from castervoice.lib.merge.state.short import R
 
@@ -23,157 +16,184 @@ def _apply(n):
 class CustomGitBashRule(MappingRule):
     pronunciation = "custom get bash"
 
+    # GIT_ADD_ALL = "g, i, t, space, a, d, d, space, minus, A"
+    # GIT_COMMIT = "g, i, t, space, c, o, m, m, i, t, space, minus, m, space, quote, quote, left"
+    BRANCH_PREFIX = 'feature/SWOPS-'
     mapping = {
+        # "(git|get) base":
+        #     Text("git "),
+
         "initialize repository":
-            Text("git init") + Key("enter"),
-        "log":
-            Key("g, i, t, space, l, o, g") + Key("enter"),
-        "Re-base":
-            Key("g, i, t, space, r, e, b, a, s, e,  space"),
-        "Re-base interactive":
-            Key("g, i, t, space, r, e, b, a, s, e,  space, minus, i, space, H, E, A, D, ~"
-                ),
+            Text("git init"),
         "add":
-            R(Key("g, i, t, space, a, d, d, space, minus, p"), rdescript="GIT: Add All"),
+            R(Text("git add -p")),
+
+
+        # "(git|get) add all":
+        #     R(Key(GIT_ADD_ALL)),
+        # "(git|get) commit all":
+        #     R(Key("%s, ;, space, %s" % (GIT_ADD_ALL, GIT_COMMIT))),
+
         "status":
-            R(Key("g, i, t, space, s, t, a, t, u, s, enter"), rdescript="GIT: Status"),
-        "reset":
-            R(Key(
-                "g, i, t, space, r, e, s, e, t, space, minus, minus, s, o, f, t, space, H, E, A, D, ~"
-            ),
-              rdescript="GIT: Reset"),
+            R(Text("git status") + Key("enter")),
         "commit":
-            R(Key(
-                "g, i, t, space, c, o, m, m, i, t, space, minus, m, space, apostrophe, apostrophe, left"
-            ),
-              rdescript="GIT: Commit"),
-        "bug fix commit <n>":
-            R(Mimic("commit") + Text("fixes #%(n)d ") + Key("backspace"),
-              rdescript="GIT: Bug Fix Commit"),
-        "reference commit <n>":
-            R(Mimic("commit") + Text("refs #%(n)d ") + Key("backspace"),
-              rdescript="GIT: Reference Commit"),
+            R(Text("git commit -m ") + Key("apostrophe, apostrophe, left")),
+
+        # "(git|get) bug fix commit <n>":
+        #     R(Mimic("get", "commit") + Text("fixes #%(n)d ") + Key("backspace")),
+        # "(git|get) reference commit <n>":
+        #     R(Mimic("get", "commit") + Text("refs #%(n)d ") + Key("backspace")),
+
         "checkout":
-            R(Text("git checkout "), rdescript="GIT: Check Out"),
-        "check out new branch":
-            R(Text("git checkout -b feature/SWOPS-"), rdescript="GIT: Check Out New Branch"),
-        "difference":
-            R(Text("git diff") + Key('enter'), rdescript="GIT: Diff"),
+            R(Text("git checkout ")),
         "branch":
-            R(Text("git branch") + Key("enter"), rdescript="GIT: Branch"),
-        "remote":
-            R(Text("git remote "), rdescript="GIT: Remote"),
+            R(Text("git branch") + Key("enter")),
+
+        # "remote":
+        #     R(Text("git remote ")),
+
         "merge":
-            R(Text("git merge "), rdescript="GIT: Merge"),
-        "merge tool":
-            R(Text("git mergetool") + Key("enter"), rdescript="GIT: Merge Tool"),
+            R(Text("git merge ")),
+        # "merge tool":
+        #     R(Text("git mergetool") + Key("enter")),
+
         "fetch":
-            R(Text("git fetch") + Key("enter"), rdescript="GIT: Fetch"),
-        "(get push | push)":
-            R(Text("git push "), rdescript="GIT: Push"),
+            R(Text("git fetch") + Key("enter")),
+        "(git|get) push":
+            R(Text("git push ")),
+
         "(get push origin | push origin)":
-            R(Text("git push -u origin "), rdescript="GIT: Push Origin"),
+            R(Text("git push -u origin %s" % BRANCH_PREFIX)),
+
         "pull":
-            R(Text("git pull") + Key("enter"), rdescript="GIT: Pull"),
+            R(Text("git pull") + Key("enter")),
+
         "dirrup":
-            R(Text("cd ../ ; ls;") + Key("enter"), rdescript="GIT: Up Directory"),
+            R(Text("cd ../ ; ls;") + Key("enter")),
+
         "list":
-            R(Text("ls "), rdescript="GIT: List"),
+            R(Text("ls ")),
+
         "list all":
-            R(Text("ls -la "), rdescript="GIT: List all"),
+            R(Text("ls -la ")),
         "Moved or":  # move dir
-            R(Text("mv "), rdescript="GIT: Move"),
+            R(Text("mv ")),
+
         "make directory":
-            R(Text("mkdir "), rdescript="GIT: Make Directory"),
-        "abort":
-            R(Key("c-c "), rdescript="GIT: Abort"),
-        "undo [last] commit":
-            R(Text("git reset --soft HEAD~1") + Key("enter"),
-              rdescript="GIT: Undo Commit"),
-        "(undo changes | reset hard)":
-            R(Text("git reset --hard") + Key("enter"),
-              rdescript="GIT: Undo or Reset Since Last Commit"),
-        "stop tracking [file]":
-            R(Text("git rm --cached FILENAME"), rdescript="GIT: Stop Tracking"),
-        "preview remove untracked":
-            R(Text("git clean -nd") + Key("enter"),
-              rdescript="GIT: Preview Remove Untracked"),
-        "remove untracked":
-            R(Text("git clean -fd") + Key("enter"), rdescript="GIT: Remove Untracked"),
-        "visualize":
-            R(Text("gitk") + Key("enter"), rdescript="GIT: gitk"),
-        "visualize file":
-            R(Text("gitk -- PATH"), rdescript="GIT: gitk Single File"),
-        "visualize all":
-            R(Text("gitk --all") + Key("enter"), rdescript="GIT: gitk All Branches"),
-        "exit":
-            R(Text("exit") + Key("enter"), rdescript="GIT: Exit"),
+            R(Text("mkdir ")),
+
+        "undo [last] commit | (git|get) reset soft head":
+            R(Text("git reset --soft HEAD~1") + Key("enter")),
+        "(undo changes | (git|get) reset hard)":
+            R(Text("git reset --hard") + Key("enter")),
+
+        # "stop tracking [file] | (git|get) remove":
+        #     R(Text("git rm --cached ")),
+        # "preview remove untracked | (git|get) clean preview":
+        #     R(Text("git clean -nd")),
+        # "remove untracked | (git|get) clean untracked":
+        #     R(Text("git clean -fd")),
+        # "(git|get) visualize":
+        #     R(Text("gitk")),
+        # "(git|get) visualize file":
+        #     R(Text("gitk -- PATH")),
+        # "(git|get) visualize all":
+        #     R(Text("gitk --all")),
         "stash":
-            R(Text("git stash "), rdescript="GIT: Stash"),
+            R(Text("git stash ")),
         "stash apply [<n>]":
-            R(Text("git stash apply")+Function(_apply), rdescript="GIT: Stash Apply"),
+            R(Text("git stash apply") + Function(_apply)),
+
         "stash list":
-            R(Text("git stash list") + Key("enter"), rdescript="GIT: Stash List"),
+            R(Text("git stash list") + Key("enter")),
+
         "stash branch":
-            R(Text("git stash branch NAME"), rdescript="GIT: Stash Branch"),
+            R(Text("git stash branch NAME")),
         "cherry pick":
-            R(Text("git cherry-pick "), rdescript="GIT: Cherry Pick"),
+            R(Text("git cherry-pick ")),
         "abort cherry pick":
-            R(Text("git cherry-pick --abort"), rdescript="GIT: Abort Cherry Pick"),
+            R(Text("git cherry-pick --abort")),
         # "GUI | gooey":
-        #     R(Text("git gui") + Key("enter"), rdescript="GIT: gui"),
-        "blame":
-            R(Text("git blame PATH -L FIRSTLINE,LASTLINE"), rdescript="GIT: Blame"),
+        #     R(Text("git gui") + Key("enter")),
+        # "blame":
+        #     R(Text("git blame PATH -L FIRSTLINE,LASTLINE")),
         # "gooey blame":
-        #     R(Text("git gui blame PATH"), rdescript="GIT: GUI Blame"),
-        "search recursive":
-            R(Text("grep -rinH \"PATTERN\" *"), rdescript="GREP: Search Recursive"),
-        "search recursive count":
-            R(Text("grep -rinH \"PATTERN\" * | wc -l"),
-              rdescript="GREP: Search Recursive Count"),
-        "search recursive filetype":
-            R(Text("find . -name \"*.java\" -exec grep -rinH \"PATTERN\" {} \\;"),
-              rdescript="GREP: Search Recursive Filetype"),
-        "to file":
-            R(Text(" > FILENAME"), rdescript="Bash: To File"),
-        "search":
-            R(Key("c-r"), rdescript="Bash: To File"),
+        #     R(Text("git gui blame PATH")),
+        # "search recursive":
+        #     R(Text("grep -rinH \"PATTERN\" *")),
+        # "search recursive count":
+        #     R(Text("grep -rinH \"PATTERN\" * | wc -l"),
+        # ),
+        # "search recursive filetype":
+        #     R(Text("find . -name \"*.java\" -exec grep -rinH \"PATTERN\" {} \\;"),
+        # ),
+        # "to file":
+        #     R(Text(" > FILENAME")),
+
 
         # Specific Commands
-        "remove directory [<text>]":
-            R(Text("rm -rf ") + Text("%(text)s"),
-              rdescript="GIT: Navigate To Caster Directory"),
-        "CD [<text>]":
-            R(Text("cd ") + Text("%(text)s") + Text("; ls") + Key("left") + Key("left") +
-              Key("left") + Key("left"),
-              rdescript="GIT: Navigate To Caster Directory"),
-        "CD Castor":
-            R(Text("cd /c/NatLink/NatLink/MacroSystem/caster") + Key("enter"),
-              rdescript="GIT: Navigate To Caster Directory"),
-        "CD custom Castor":
-            R(Text("cd /c/NatLink/NatLink/MacroSystem/caster/user") + Key("enter"),
-              rdescript="GIT: Navigate To Caster Directory"),
-        "checkout develop":
-            R(Text("git checkout develop") + Key("enter"), rdescript="GIT: Check Out"),
-        # "Mungo":
-        #     R(Text("mongo "), rdescript="GIT: Check Out"),
-        "Clear":
-            R(Text("clear") + Key("enter"), rdescript="GIT: Check Out"),
-        "Cat":
-            R(Text("cat "), rdescript="GIT: Check Out"),
-        "SSH [<text>]":
-            R(Text("ssh ") + Text("%(text)s"), rdescript="GIT: ssh"),
-        "pseudo":
-            R(Text("sudo "), rdescript="GIT: Check Out"),
-        "apt get install":
-            R(Text("apt-get install "), rdescript="GIT: Check Out"),
-        "next tab":
-            R(Key("c-tab"), rdescript="switch tab"),
-        "pytest":
-            R(Text("pytest -s -vv"), rdescript="run pytest"),
 
+        # git
+        "difference":
+            R(Text("git diff") + Key('enter')),
+        "log":
+            R(Text("git log") + Key("enter")),
+        "Re-base":
+            R(Text("git repbase ")),
+        "Re-base interactive":
+            R(Text("git repbase -i HEAD~")),
+        "checkout develop":
+            R(Text("git checkout develop") + Key("enter")),
+        "check out new branch":
+            R(Text("git checkout -b %s" % BRANCH_PREFIX)),
+        "reset":
+            R(Text("git reset --soft HEAD~")),
+
+        # shell
+        "abort":
+            R(Key("c-c ")),
+        "exit":
+            R(Text("exit") + Key("enter")),
+        "search":
+            R(Key("c-r")),
+        "remove directory [<text>]":
+            R(Text("rm -rf ") + Text("%(text)s")),
+        "CD [<text>]":
+            R(Text("cd %(text)s; ls") + (Key("left") * 4)),
+        "CD Castor":
+            R(Text("cd ~/Documents/Caster/") + Key("enter")),
+        "CD custom Castor":
+            R(Text("cd ~/AppData/Local/caster/") + Key("enter")),
+        "CD archon":
+            R(Text("cd ~/dev/arkon/") + Key("enter")),
+        "CD strange":
+            R(Text("cd ~/dev/strange/") + Key("enter")),
+        "CD xavier":
+            R(Text("cd ~/dev/xavier/") + Key("enter")),
+
+        "Clear":
+            R(Text("clear") + Key("enter")),
+        "Cat":
+            R(Text("cat ")),
+        "SSH [<text>]":
+            R(Text("ssh ") + Text("%(text)s")),
+        "pseudo":
+            R(Text("sudo ")),
+        "apt get install":
+            R(Text("apt-get install ")),
+
+        # terminal
+        "next tab":
+            R(Key("c-tab")),
+
+        # python
         "activate environment":
-            R(Text("source .venv/bin/activate") + Key("enter"), rdescript="activate virtual environment"),
+            R(Text("source .venv/bin/activate") + Key("enter")),
+        # python
+        "deactivate environment":
+            R(Text("deactivate") + Key("enter")),
+        "pytest":
+            R(Text("pytest -s -vv")),
     }
     extras = [
         ShortIntegerRef("n", 1, 10000),
@@ -182,25 +202,20 @@ class CustomGitBashRule(MappingRule):
     defaults = {"n": 0, "text": ""}
 
 
-# ---------------------------------------------------------------------------
-
-
 _executables = [
-    "debian",
-    "bash",
-    "mintty",
-    "ConEmu64",
-    "WindowsTerminal",
     "\\sh.exe",
     "\\bash.exe",
     "\\cmd.exe",
     "\\mintty.exe",
     "\\powershell.exe",
+    "debian",
+    "bash",
+    "mintty",
+    "ConEmu64",
+    "WindowsTerminal",
 ]
 
 
 def get_rule():
-    details = RuleDetails(executable=_executables,
-                          name="custom get bash",
-    )
+    details = RuleDetails(name="custom get bash", executable=_executables)
     return CustomGitBashRule, details
