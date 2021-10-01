@@ -5,7 +5,7 @@ from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
 from castervoice.lib.merge.mergerule import MergeRule
 from castervoice.lib.merge.state.short import R
 
-from dragonfly import (Dictation, Function, Playback, Repeat, ShortIntegerRef)
+from dragonfly import (Dictation, Function, Playback, Repeat, ShortIntegerRef, Text)
 
 
 
@@ -25,6 +25,18 @@ def wheel_scroll_up(nnavi500):
 
 def wheel_scroll_down(nnavi500):
     navigation.wheel_scroll('down', nnavi500)
+
+
+def _first_three(textnv):
+    Text(textnv[:3]).execute()
+
+
+def _first_four(textnv):
+    Text(textnv[:4]).execute()
+
+
+def _first_letters(textnv):
+    Text(''.join([_[0] for _ in textnv.split()])).execute()
 
 
 class CustomStuff(MergeRule):
@@ -77,6 +89,12 @@ class CustomStuff(MergeRule):
             R(Function(navigation.left_click))*Repeat(extra="nnavi3"),
         'duke':
             R(Function(navigation.left_click)*Repeat(2)),
+        "thrack <textnv>":
+            R(Function(_first_three), rdescript="First three letters"),
+        "quatro <textnv>":
+            R(Function(_first_four), rdescript="First three letters"),
+        "snitch <textnv>":
+            R(Function(_first_letters), rdescript="First three letters"),
         "cram <textnv>":
             R(Function(format_text_wrapper, cap=3, space=1), rdescript="camelCase"),
         "smash <textnv>":
