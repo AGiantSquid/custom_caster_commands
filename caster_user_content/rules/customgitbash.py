@@ -59,7 +59,7 @@ class CustomGitBashRule(MappingRule):
 
         "fetch":
             R(Text("git fetch") + Key("enter")),
-        "(git|get) push":
+        "push":
             R(Text("git push ")),
 
         "(get push origin | push origin)":
