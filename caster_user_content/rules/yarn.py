@@ -1,11 +1,11 @@
 from dragonfly import Grammar, AppContext
 from dragonfly.actions.action_text import Text
 
-from caster.lib import control, settings
-from caster.lib.dfplus.merge.mergerule import MergeRule
-from caster.lib.dfplus.state.short import R
-from caster.lib.dfplus.additions import IntegerRefST
-from caster.lib.dfplus.merge import gfilter
+from castervoice.lib import control, settings
+from castervoice.lib.merge.mergerule import MergeRule
+from castervoice.lib.state.short import R
+from castervoice.lib.additions import IntegerRefST
+from castervoice.lib.merge import gfilter
 
 
 class YarnCommands(MergeRule):

@@ -1,11 +1,9 @@
-from caster.lib import control
-from caster.lib.dfplus.merge.mergerule import MergeRule
-from caster.lib.dfplus.state.short import R
+from castervoice.lib import control
+from castervoice.lib.actions import Key
+from castervoice.lib.merge.mergerule import MergeRule
+from castervoice.lib.merge.state.short import R
 
-from caster.lib.dfplus.additions import IntegerRefST
-
-from dragonfly import Text, Function, Repeat
-from dragonfly.actions.action_key import Key
+from dragonfly import Text, Function, ShortIntegerRef
 
 
 def _render_number(n):
@@ -69,7 +67,7 @@ class UpperCaseSQL(MergeRule):
             R(Text(" VARCHAR() ") + Key("left:2"), rdescript="SQL: Count"),
     }
     extras = [
-        IntegerRefST("n", 1, 10000),
+        ShortIntegerRef("n", 1, 10000),
     ]
     defaults = {"n": 0}
 

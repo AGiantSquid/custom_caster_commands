@@ -1,25 +1,11 @@
-from castervoice.lib import control, navigation
-from castervoice.lib.merge.mergerule import MergeRule
-from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
-from castervoice.lib.merge.state.short import R, L, S
-
-
-from dragonfly import Function, Playback, Mimic, WaitWindow, Repeat, Pause
-from castervoice.lib import textformat
-
-from dragonfly import Repeat, Function, Dictation
+from castervoice.lib import navigation, textformat
 from castervoice.lib.actions import Key
-# from dragonfly.actions.action_key import Key
-
-
 from castervoice.lib.const import CCRType
-
 from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
-from castervoice.lib.actions import Key, Text, Mouse
+from castervoice.lib.merge.mergerule import MergeRule
+from castervoice.lib.merge.state.short import R
 
-from dragonfly import ShortIntegerRef
-from dragonfly import (MappingRule, BringApp, Key, Function, Grammar, Playback,
-                       IntegerRef, Dictation, Choice, WaitWindow)
+from dragonfly import (Dictation, Function, Playback, Repeat, ShortIntegerRef)
 
 
 
