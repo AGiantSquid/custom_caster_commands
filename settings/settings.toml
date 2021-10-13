@@ -55,7 +55,7 @@ default_hooks = ["PrinterHook"]
 [online]
 update_interval = 7
 online_mode = true
-last_update_date = "2021-09-30"
+last_update_date = "2021-10-07"
 
 [miscellaneous]
 max_ccr_repetitions = 16

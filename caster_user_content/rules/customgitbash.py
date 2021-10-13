@@ -139,9 +139,9 @@ class CustomGitBashRule(MappingRule):
         "log":
             R(Text("git log") + Key("enter")),
         "Re-base":
-            R(Text("git repbase ")),
+            R(Text("git rebase ")),
         "Re-base interactive":
-            R(Text("git repbase -i HEAD~")),
+            R(Text("git rebase -i HEAD~")),
         "checkout develop":
             R(Text("git checkout develop") + Key("enter")),
         "check out new branch":
