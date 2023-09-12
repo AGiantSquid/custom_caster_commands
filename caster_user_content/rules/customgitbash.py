@@ -181,10 +181,20 @@ class CustomGitBashRule(MappingRule):
             R(Text("sudo ")),
         "apt get install":
             R(Text("apt-get install ")),
+        "open new window":
+            R(Key("cs-n"), rdescript="Custom Navigation: Open New window"),
 
         # terminal
         "next tab":
             R(Key("c-tab")),
+        "prior tab":
+            R(Key("cs-tab")),
+        "marco":
+            R(Key("cs-f")),
+        "totch":
+            R(Key("cs-w"), rdescript="Close Tab"),
+        "peach":
+            R(Key("cs-t")),
 
         # python
         "activate environment":

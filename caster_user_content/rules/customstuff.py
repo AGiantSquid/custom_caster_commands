@@ -27,16 +27,16 @@ def wheel_scroll_down(nnavi500):
     navigation.wheel_scroll('down', nnavi500)
 
 
+def _first_letters(textnv):
+    Text(''.join([_[0] for _ in textnv.split()])).execute()
+
+
 def _first_three(textnv):
     Text(textnv[:3]).execute()
 
 
 def _first_four(textnv):
     Text(textnv[:4]).execute()
-
-
-def _first_letters(textnv):
-    Text(''.join([_[0] for _ in textnv.split()])).execute()
 
 
 class CustomStuff(MergeRule):
@@ -63,7 +63,7 @@ class CustomStuff(MergeRule):
         "workace ross":
             R(Key("cw-right"), rdescript="Workspace Right"),
         "peach":
-            R(Key("c-t"), rdescript="Open New Tab"),
+            R(Key("c-t"), rdescript="Open New Tabs"),
         "totch":
             R(Key("c-w/20"), rdescript="Close Tab"),
         "Lexi":
@@ -89,12 +89,12 @@ class CustomStuff(MergeRule):
             R(Function(navigation.left_click))*Repeat(extra="nnavi3"),
         'duke':
             R(Function(navigation.left_click)*Repeat(2)),
+        "snitch <textnv>":
+            R(Function(_first_letters), rdescript="First letter"),
         "thrack <textnv>":
             R(Function(_first_three), rdescript="First three letters"),
         "quatro <textnv>":
-            R(Function(_first_four), rdescript="First three letters"),
-        "snitch <textnv>":
-            R(Function(_first_letters), rdescript="First three letters"),
+            R(Function(_first_four), rdescript="First four letters"),
         "cram <textnv>":
             R(Function(format_text_wrapper, cap=3, space=1), rdescript="camelCase"),
         "smash <textnv>":

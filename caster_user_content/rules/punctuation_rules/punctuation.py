@@ -28,16 +28,10 @@ class Punctuation(MergeRule):
             R(Key("tab"))*Repeat(extra="npunc"),
         "tarsh [<npunc>]":
             R(Key("s-tab"))*Repeat(extra="npunc"),
-        "swipe [<npunc>]":
-            R(Text(", "))*Repeat(extra="npunc"),
-        "bam [<npunc>]":
-            R(Text(". "))*Repeat(extra="npunc"),
         'shaber [<npunc>]':
             R(Key("c-rbracket"))*Repeat(extra="npunc"),
         'shable [<npunc>]':
             R(Key("c-lbracket"))*Repeat(extra="npunc"),
-        "skoosh [<npunc100>]":
-            R(Text(" "))*Repeat(extra="npunc100"),
     }
 
     extras = [

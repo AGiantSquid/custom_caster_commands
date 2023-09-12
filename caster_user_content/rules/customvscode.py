@@ -18,7 +18,7 @@ class CustomVSCode(MergeRule):
             R(Key("csa-l"), rdescript="VS Code: lowercase"),
         "execute":
             R(Key("s-enter"), rdescript="VS Code: Ctrl + b"),
-        "[go to] group [<n2>]":
+        "[go to] dopain [<n2>]":
             R(Key("c-%(n2)s"), rdescript="VS Code: Go to Group #"),
         "(spring | Spring ) <n>":
             R(Key("c-g") + Pause("10") + Text("%(n)s") + Key("enter"),

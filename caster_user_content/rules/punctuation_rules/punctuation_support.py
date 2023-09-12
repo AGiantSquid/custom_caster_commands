@@ -3,9 +3,6 @@ import dragonfly
 
 def double_text_punc_dict():
     return {
-        "quotes":                              "\"\"",
-        "Quach it":                            "''",
-        "tickris":                             "``",
         "prekris":                             "()",
         "brax":                                "[]",
         "curly":                               "{}",
@@ -30,7 +27,11 @@ def text_punc_dict():
 
     _id = _inv_dtpb()
     return {
+        "quotes":                                             "\"",
+        "Quach it":                                           "'",
         "skoosh":                                             " ",
+        "swipe":                                              ", ",
+        "bam":                                                ". ",
         "bang":                                               "!",
         "hash tag | pound sign | pounder":                    "#",
         "Dolly":                                              "$",
@@ -41,10 +42,11 @@ def text_punc_dict():
         "prekos":                                             ")",
         "starling":                                           "*",
         "plus":                                               "+",
-        comma:                                                ",",
         "minus":                                              "-",
+        comma:                                                ",",
         "period | dot":                                       ".",
         "slash":                                              "/",
+        "shawls | backslash":                                "\\",
         "deckle":                                             ":",
         "sinker":                                             ";",
         "[is] less than | langle ":                           "<",
@@ -56,7 +58,6 @@ def text_punc_dict():
         "questo":                                             "?",
         "(atty | at symbol)":                                 "@",
         "brackorp ":                                          "[",
-        "shawls | backslash":                                "\\",
         "brackos":                                            "]",
         "carrot":                                             "^",
         "crunder":                                            "_",
